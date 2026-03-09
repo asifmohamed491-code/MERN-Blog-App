@@ -26,7 +26,7 @@ const blogSchema = new mongoose.Schema({
   likes:Number
 });
 
-const Blog = mongoose.model('Blog', blogSchema);
+const Blog = mongoose.model('Blog', blogSchema,"blogDB");
 
 // Routes
 app.get('/api/blogs', async (req, res) => {
