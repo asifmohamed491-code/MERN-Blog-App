@@ -14,7 +14,7 @@ function Blogs() {
 
   const fetchBlogs = () => {
     axios
-      .get("http://localhost:5000/api/blogs")
+      .get("https://blog-backend-dg7v.onrender.com/api/blogs")
       .then((res) => {
         setBlogs(res.data);
       })
@@ -42,7 +42,7 @@ function Blogs() {
     try {
 
       const res = await axios.patch(
-        `http://localhost:5000/api/blogs/like/${blog_id}`
+        `https://blog-backend-dg7v.onrender.com/api/blogs/like/${blog_id}`
       );
 
       if (res.status === 200) {
@@ -67,7 +67,7 @@ function Blogs() {
     });
 
     axios
-      .post("http://localhost:5000/api/blogs", {
+      .post("https://blog-backend-dg7v.onrender.com/api/blogs", {
         newTitle,
         newContent,
         date,
