@@ -63,12 +63,12 @@ function Home() {
         {/* TECH STACK */}
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-8 justify-items-center py-12">
 
-          <img src={HTML} className="w-12" />
-          <img src={CSS} className="w-12" />
-          <img src={JS} className="w-12" />
-          <img src={REACTICON} className="w-12" />
-          <img src={DB} className="w-12" />
-          <img src={NODE} className="w-12" />
+          <img src={HTML} alt="blog-image" className="w-12" />
+          <img src={CSS} alt="blog-image" className="w-12" />
+          <img src={JS} alt="blog-image" className="w-12" />
+          <img src={REACTICON}  alt="blog-image" className="w-12" />
+          <img src={DB} alt="blog-image" className="w-12" />
+          <img src={NODE} alt="blog-image" className="w-12" />
 
         </div>
 
