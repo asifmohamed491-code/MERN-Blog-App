@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import auth from "../config/firebase";
-
 
 function Signup() {
 
@@ -13,17 +12,21 @@ function Signup() {
 
   const navigate = useNavigate();
 
-  useEffect(()=>{
-    auth.onAuthStateChanged(function (user) {
+  // if user already logged in redirect to home
+  useEffect(() => {
+
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigate("/home")
-      }
-      else{
-        navigate("/login")
+        navigate("/home");
       }
     });
-  })
+
+    return () => unsubscribe();
+
+  }, [navigate]);
+
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
     if (password !== confirmPassword) {
@@ -31,15 +34,21 @@ function Signup() {
       return;
     }
 
-    // sending to firebase
-    createUserWithEmailAndPassword(auth,email,password).then((res)=>{
-      console.log(res)
-    }).catch(()=>{
-      console.log("Failed to add user")
-    })
-      
+    // create user in firebase
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async () => {
 
-    navigate("/login");
+        // logout immediately after signup
+        await signOut(auth);
+
+        // redirect to login page
+        navigate("/login");
+
+      })
+      .catch(() => {
+        setError("Failed to create account");
+      });
+
   };
 
   return (
@@ -50,12 +59,10 @@ function Signup() {
         className="w-full max-w-xl md:max-w-2xl bg-white/80 backdrop-blur-md p-10 rounded-2xl shadow-xl border border-gray-200"
       >
 
-        {/* Title */}
         <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
           Create Account
         </h2>
 
-        {/* Email */}
         <div className="mb-5">
           <label className="text-sm text-gray-600">Email</label>
 
@@ -69,7 +76,6 @@ function Signup() {
           />
         </div>
 
-        {/* Password */}
         <div className="mb-5">
           <label className="text-sm text-gray-600">Password</label>
 
@@ -83,7 +89,6 @@ function Signup() {
           />
         </div>
 
-        {/* Confirm Password */}
         <div className="mb-5">
           <label className="text-sm text-gray-600">Confirm Password</label>
 
@@ -102,7 +107,6 @@ function Signup() {
 
         </div>
 
-        {/* Login link */}
         <p
           className="text-sm text-blue-600 cursor-pointer mb-6 hover:underline"
           onClick={() => navigate("/login")}
@@ -110,7 +114,6 @@ function Signup() {
           Already have an account? Login here
         </p>
 
-        {/* Register button */}
         <button
           type="submit"
           className="w-full bg-orange-500 text-white py-3 rounded-lg font-semibold hover:bg-orange-600 transition"
