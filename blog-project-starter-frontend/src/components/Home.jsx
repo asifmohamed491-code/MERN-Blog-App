@@ -20,9 +20,6 @@ function Home() {
   return (
     <div>
 
-    
-
-      {/* MAIN CONTENT CONTAINER */}
       <div className="px-10 md:px-16">
 
         {/* HERO */}
@@ -53,25 +50,23 @@ function Home() {
             <img
               src={BlogProfileImage}
               className="w-56 md:w-96"
-              alt="Profile"
+              alt="Mohamed Asif profile"
             />
           </div>
 
         </div>
 
-
         {/* TECH STACK */}
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-8 justify-items-center py-12">
 
-          <img src={HTML} alt="blog-image" className="w-12" />
-          <img src={CSS} alt="blog-image" className="w-12" />
-          <img src={JS} alt="blog-image" className="w-12" />
-          <img src={REACTICON}  alt="blog-image" className="w-12" />
-          <img src={DB} alt="blog-image" className="w-12" />
-          <img src={NODE} alt="blog-image" className="w-12" />
+          <img src={HTML} alt="HTML logo" className="w-12" />
+          <img src={CSS} alt="CSS logo" className="w-12" />
+          <img src={JS} alt="JavaScript logo" className="w-12" />
+          <img src={REACTICON} alt="React logo" className="w-12" />
+          <img src={DB} alt="Database icon" className="w-12" />
+          <img src={NODE} alt="NodeJS logo" className="w-12" />
 
         </div>
-
 
         {/* SERVICES */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-16 mt-16">
@@ -90,7 +85,6 @@ function Home() {
 
             </div>
 
-
             <div className="border-[6px] border-green-500 border-t-0 rounded-lg p-6 w-60 text-center">
 
               <div className="rounded-full p-5 font-bold text-white bg-gradient-to-br from-green-200 to-green-600">
@@ -104,7 +98,6 @@ function Home() {
             </div>
 
           </div>
-
 
           <div className="text-center md:text-left">
 
@@ -128,7 +121,6 @@ function Home() {
 
         </div>
 
-
         {/* PROJECTS */}
         <div className="mt-20">
 
@@ -141,16 +133,19 @@ function Home() {
 
             <img
               src={P1}
+              alt="Project 1 preview"
               className="w-72 rounded-md shadow hover:scale-105 transition cursor-pointer"
             />
 
             <img
               src={P2}
+              alt="Project 2 preview"
               className="w-72 rounded-md shadow hover:scale-105 transition cursor-pointer"
             />
 
             <img
               src={P3}
+              alt="Project 3 preview"
               className="w-72 rounded-md shadow hover:scale-105 transition cursor-pointer"
             />
 
@@ -158,13 +153,13 @@ function Home() {
 
         </div>
 
-
         {/* BLOG */}
         <div className="flex flex-col md:flex-row items-center justify-center gap-16 my-20">
 
           <div>
             <img
               src={BlogImage}
+              alt="Blog illustration"
               className="w-56 md:w-96"
             />
           </div>
@@ -196,7 +191,6 @@ function Home() {
 
       </div>
 
-      {/* FOOTER OUTSIDE CONTAINER */}
       <Footer />
 
     </div>

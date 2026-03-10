@@ -12,13 +12,15 @@ function Blogs() {
   const [newContent, setNewContent] = useState("");
   const [admin, setAdmin] = useState(false);
 
-  const fetchBlogs = () => {
-    axios
-      .get("https://blog-backend-dg7v.onrender.com/api/blogs")
-      .then((res) => {
-        setBlogs(res.data);
-      })
-      .catch(() => console.log("Error fetching data"));
+  const fetchBlogs = async () => {
+    try {
+      const res = await axios.get(
+        "https://blog-backend-dg7v.onrender.com/api/blogs"
+      );
+      setBlogs(res.data);
+    } catch (error) {
+      console.log("Error fetching data");
+    }
   };
 
   useEffect(() => {
@@ -36,7 +38,7 @@ function Blogs() {
 
     return () => unsubscribe();
 
-  }, []);
+  }, []); // dependency warning avoid
 
   const handleLike = async (blog_id) => {
     try {
@@ -86,10 +88,8 @@ function Blogs() {
 
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-gray-50 to-gray-100 pt-16">
 
-      {/* CONTENT WRAPPER */}
       <div className="flex-grow">
 
-        {/* HEADER */}
         <div className="text-center mb-14 px-4">
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
@@ -102,7 +102,6 @@ function Blogs() {
 
         </div>
 
-        {/* ADMIN BLOG CREATE */}
         {admin && (
 
           <div className="px-4">
@@ -148,7 +147,6 @@ function Blogs() {
 
         )}
 
-        {/* BLOG LIST */}
         <div className="flex flex-wrap gap-10 px-6">
 
           {blogs.map((blog) => (
@@ -194,7 +192,6 @@ function Blogs() {
 
       </div>
 
-      {/* FOOTER */}
       <Footer />
 
     </div>
